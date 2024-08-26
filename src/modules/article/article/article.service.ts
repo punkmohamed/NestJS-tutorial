@@ -26,7 +26,7 @@ export class ArticleService {
         // }
 
 
-        const fileNames = files.map((file) => file.originalname);
+        const fileNames = files.map((file) => file.filename);
         const newArticle = await this.articleModel.insertMany({ ...rest, auther: user, images: fileNames })
         return { message: "Added tag", article: newArticle };
     }
