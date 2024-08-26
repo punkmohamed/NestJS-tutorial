@@ -12,19 +12,18 @@ export class TagsController {
     }
     @Get('/:id')
     getaTags(@Param('id') id: string) {
-        return this._tagService.getaTags(id)
+        return this._tagService.getaTag(id)
     }
     @Post()
     addTags(@Body() body: any) {
-        return this._tagService.addTags(body)
+        return this._tagService.addTag(body)
     }
     @Put('/:id')
     updateTags(@Param('id') id: string, @Body() body: any) {
-        return this._tagService.updateTags({ id, body })
+        return this._tagService.updateTag(id, body)
     }
     @Delete('/:id')
     deleteTags(@Param('id') id: string) {
-        return this._tagService.deleteTags(id)
+        return this._tagService.deleteTag(id)
     }
-
 }
