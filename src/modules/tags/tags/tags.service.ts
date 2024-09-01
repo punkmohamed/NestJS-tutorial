@@ -19,8 +19,8 @@ export class TagsService {
         return { message: "Found tag", tag };
     }
 
-    async addTag(body: any) {
-        const { title, userId } = body
+    async addTag(body: any, userId: string) {
+        const { title } = body
         const user = await this.userModel.findById(userId)
         if (!user) {
             throw new HttpException("user not dound", HttpStatus.NOT_FOUND)

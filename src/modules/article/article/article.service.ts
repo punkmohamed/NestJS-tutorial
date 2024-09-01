@@ -6,6 +6,7 @@ import { Tag } from 'src/core/schema/tags.chema';
 import { User } from 'src/core/schema/user.schema';
 
 @Injectable()
+
 export class ArticleService {
     constructor(@InjectModel(Article.name) private articleModel: Model<Article>, @InjectModel(Tag.name) private tagModel: Model<Tag>,
         @InjectModel(User.name) private userModel: Model<User>) {
@@ -17,10 +18,10 @@ export class ArticleService {
     }
 
 
-    async addArticle(body: any, files: Array<Express.Multer.File>) {
+    async addArticle(body: any, files: Array<Express.Multer.File>, userId: string) {
         console.log('Files try again:', files);
-        const { auther, ...rest } = body
-        const user = await this.userModel.findById(auther)
+        const { ...rest } = body
+        const user = await this.userModel.findById(userId)
         // if (!user) {
         //     throw new HttpException("invalid errorsss", HttpStatus.NOT_FOUND)
         // }

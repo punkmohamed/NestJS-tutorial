@@ -29,7 +29,7 @@ export class AuthService {
         const user = await this.userModal.findOne({ email: body.email })
         let matchPassword = await bcrypt.compare(body.password, user.password)
         if (user && matchPassword) {
-            let token = this._jwtService.sign({ name: user.name, email: user.email }, { secret: "test" })
+            let token = this._jwtService.sign({ name: user.name, email: user.email, id: user._id }, { secret: "test" })
             throw new HttpException({ message: "you have signin successfully", token }, HttpStatus.ACCEPTED)
         } else {
             throw new HttpException("invalid email or password ", HttpStatus.FORBIDDEN)
